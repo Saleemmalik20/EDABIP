@@ -40,7 +40,7 @@ const Signup = () => {
 
     // Redirect based on role
     if (response.user?.role === "admin") {
-      navigate("/members");
+      navigate("/dashboard");
     } else {
       navigate("/dashboard");
     }

@@ -30,10 +30,11 @@ const Login = () => {
       }
 
       // Redirect based on role
+      // After successful login
       if (response.user?.role === "admin") {
-        navigate("/members"); // Admins go to Members page
+        navigate("/dashboard"); // Changed from /members to /dashboard
       } else {
-        navigate("/dashboard"); // Regular users go to Dashboard
+        navigate("/dashboard");
       }
       
       // Removed the duplicate 'navigate("/members")' that was overriding the logic above

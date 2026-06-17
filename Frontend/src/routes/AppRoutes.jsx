@@ -6,8 +6,8 @@ import Members from "../pages/members/Members";
 import Dashboard from "../pages/dashboard/Dashboard";
 import EmployeeList from "../pages/employees/EmployeeList";
 import EmployeeDetails from "../pages/employees/EmployeeDetails";
+import Subscription from "../pages/billing/Subscription";
 
-// Protected Route Component
 const ProtectedRoute = ({ children, requireAdmin = false }) => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -17,7 +17,6 @@ const ProtectedRoute = ({ children, requireAdmin = false }) => {
   }
 
   if (requireAdmin && user.role !== "admin") {
-    // Redirect non-admin users to dashboard
     return <Navigate to="/dashboard" replace />;
   }
 
@@ -30,8 +29,16 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        // Add this route inside the Routes component
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Subscription />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* Dashboard - Accessible to all logged-in users */}
         <Route
           path="/dashboard"
           element={
@@ -41,7 +48,6 @@ const AppRoutes = () => {
           }
         />
 
-        {/* Members - Admin only */}
         <Route
           path="/members"
           element={
@@ -51,7 +57,6 @@ const AppRoutes = () => {
           }
         />
 
-        {/* Employees - Admin only */}
         <Route
           path="/employees"
           element={
@@ -61,7 +66,6 @@ const AppRoutes = () => {
           }
         />
 
-        {/* Employee Details - Admin only */}
         <Route
           path="/employees/:id"
           element={
@@ -71,7 +75,6 @@ const AppRoutes = () => {
           }
         />
 
-        {/* Default redirect to login page */}
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
