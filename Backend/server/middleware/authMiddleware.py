@@ -7,6 +7,7 @@ from config.env import settings
 from models.User import User
 import models.User as UserModels
 
+
 security = HTTPBearer()
 
 async def get_current_user(

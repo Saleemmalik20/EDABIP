@@ -38,7 +38,7 @@ const Navbar = () => {
     { name: "Employees", icon: Users, path: "/employees", adminOnly: true },
     { name: "Attendance", icon: Calendar, path: "/attendance" },
     { name: "Departments", icon: Building2, path: "/departments" },
-    { name: "Audit Logs", icon: FileText, path: "/audit" },
+    { name: "Audit Logs", icon: FileText, path: "/security", adminOnly: true },
   ];
 
   const toggleSidebar = () => {
@@ -91,7 +91,7 @@ const Navbar = () => {
                 onClick={() => navigate("/dashboard")}
                 className="px-3 py-1.5 text-sm font-medium text-blue-600 border-b-2 border-blue-600"
               >
-                Overview
+                Dashboard
               </button>
               <button className="px-3 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">
                 Company A
@@ -115,7 +115,10 @@ const Navbar = () => {
                 <Building2 className="w-4 h-4" />
                 <span>Departments</span>
               </button>
-              <button className="flex items-center space-x-1.5 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg">
+              <button
+                onClick={() => navigate("/security")}  // Change to /security
+                className="flex items-center space-x-1.5 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg"
+              >
                 <FileText className="w-4 h-4" />
                 <span>Audit Logs</span>
               </button>

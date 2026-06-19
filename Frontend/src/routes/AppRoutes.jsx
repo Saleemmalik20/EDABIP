@@ -7,6 +7,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import EmployeeList from "../pages/employees/EmployeeList";
 import EmployeeDetails from "../pages/employees/EmployeeDetails";
 import Subscription from "../pages/billing/Subscription";
+import SecurityMonitoring from "../pages/security/SecurityMonitoring";
 
 const ProtectedRoute = ({ children, requireAdmin = false }) => {
   const token = localStorage.getItem("token");
@@ -44,6 +45,16 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        
+        <Route
+          path="/security"
+          element={
+            <ProtectedRoute requireAdmin={true}>
+              <SecurityMonitoring />
             </ProtectedRoute>
           }
         />
