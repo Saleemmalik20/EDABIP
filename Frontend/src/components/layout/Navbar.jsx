@@ -13,6 +13,7 @@ import {
   LogOut,
   LayoutGrid,
   UserCog,
+  TrendingUp,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -39,6 +40,7 @@ const Navbar = () => {
     { name: "Attendance", icon: Calendar, path: "/attendance" },
     { name: "Departments", icon: Building2, path: "/departments" },
     { name: "Audit Logs", icon: FileText, path: "/security", adminOnly: true },
+    { name: "Demand Forecasting", icon: TrendingUp, path: "/demand-forecasting" },
   ];
 
   const toggleSidebar = () => {

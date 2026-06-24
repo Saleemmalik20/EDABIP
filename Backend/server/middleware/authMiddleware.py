@@ -5,8 +5,6 @@ from sqlalchemy.orm import Session
 from config.db import get_db
 from config.env import settings
 from models.User import User
-import models.User as UserModels
-
 
 security = HTTPBearer()
 
@@ -36,7 +34,14 @@ async def get_current_user(
             detail="User not found"
         )
     
-    if user.status != UserModels.StatusType.ACTIVE:
+    # ✅ FIXED: Check status as string instead of enum
+    # Handle both enum and string status values
+    user_status = user.status
+    if hasattr(user_status, 'value'):
+        # If it's an enum, get the value
+        user_status = user_status.value
+    
+    if user_status != "active":
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Account is not active"

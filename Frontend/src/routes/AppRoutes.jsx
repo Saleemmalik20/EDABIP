@@ -8,6 +8,7 @@ import EmployeeList from "../pages/employees/EmployeeList";
 import EmployeeDetails from "../pages/employees/EmployeeDetails";
 import Subscription from "../pages/billing/Subscription";
 import SecurityMonitoring from "../pages/security/SecurityMonitoring";
+import DemandForecasting from "../pages/forecasting/DemandForecasting";
 
 const ProtectedRoute = ({ children, requireAdmin = false }) => {
   const token = localStorage.getItem("token");
@@ -82,6 +83,15 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute requireAdmin={true}>
               <EmployeeDetails />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/demand-forecasting"
+          element={
+            <ProtectedRoute>
+              <DemandForecasting />
             </ProtectedRoute>
           }
         />
